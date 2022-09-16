@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { parseCookies } from 'nookies';
 import { useAuth } from '../hooks/useAuth';
 
-import logoImg from '../assets/logoTemp.png';
+import logoImg from '../assets/dklogo.svg';
 
 export default function Home() {
   const { loading, signInWithGoogle } = useAuth();
