@@ -101,8 +101,8 @@ export default {
     xxxg: '12rem',
   },
   family: {
-    primary: 'Mirian Libre, sans-serif',
-    secondary: 'Quicksand, sans-serif',
+    primary: 'Miriam Libre',
+    secondary: 'Quicksand',
   },
   opacity: {
     none: '0.0',
