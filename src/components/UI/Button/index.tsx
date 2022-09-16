@@ -13,8 +13,8 @@ interface IButtonProps extends ButtonProps {
 const Button = ({ children, icon, isLoading, ...props }: IButtonProps) => {
   return (
     <StyledButton {...props}>
-      {children}
-      {isLoading && <SpinnerGap className='load-icon' />}
+      <span>{children}</span>
+      {isLoading && <SpinnerGap className='load-icon' size={24} />}
     </StyledButton>
   );
 };

@@ -10,14 +10,19 @@ export const StyledButton = styled.button`
     font-family: ${theme.family.secondary};
     font-size: ${theme.fontsize.m};
     font-weight: ${theme.weight.bold};
-    padding: ${theme.spacing.xs} ${theme.spacing.sm};
+    padding:0 ${theme.spacing.sm};
+    
+    span {
+      display: inline-block;
+      height: auto;
+      line-height: 3;
+    }
 
     & .load-icon {
       animation: ${rotate} 1s linear infinite;
   `}
 `;
 
-// create animation to icon loading on button
 const rotate = keyframes`
   from {
     transform: rotate(0deg);
