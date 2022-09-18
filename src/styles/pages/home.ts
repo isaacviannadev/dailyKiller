@@ -44,6 +44,11 @@ export const CardPrincipalSC = styled.div`
       z-index: 3;
     }
 
+    & .ladoA {
+      & img {
+        width: 100%;
+      }
+    }
     & .ladoB {
       display: flex;
       align-items: center;

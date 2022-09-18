@@ -1,11 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
 import { GetServerSideProps } from 'next';
-import Image from 'next/image';
 import { parseCookies } from 'nookies';
 import { useAuth } from '../hooks/useAuth';
 
 import Head from 'next/head';
-import logoImg from '../assets/dklogo.svg';
-import Hand from '../assets/handHome.svg';
 import Button from '../components/UI/Button';
 import {
   CardPrincipalSC,
@@ -29,7 +27,7 @@ export default function Home() {
       <ContainerSC>
         <CardPrincipalSC>
           <div className='ladoA'>
-            <Image src={logoImg} alt='Logo' />
+            <img src='/assets/dklogo.svg' alt='Logo' />
             <h1>
               Mate sua daily, <br /> antes que ela te mate!
             </h1>
@@ -50,7 +48,7 @@ export default function Home() {
             </DivButtonHomeSC>
           </div>
           <div className='ladoB'>
-            <Image src={Hand} alt='Mão dando dedo do meio' />
+            <img src='/assets/handHome.svg' alt='Mão dando dedo do meio' />
           </div>
         </CardPrincipalSC>
       </ContainerSC>
