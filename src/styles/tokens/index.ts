@@ -20,6 +20,7 @@ export default {
       light: '#FFFFF6',
       default: '#ffffdd',
       dark: '#e9d6af',
+      darkest: '#D3BB88',
     },
     success: {
       light: '#E4FCED',
@@ -27,9 +28,9 @@ export default {
       dark: '#7DCE9C',
     },
     error: {
-      light: '#FFFFF6',
-      default: '#ffffdd',
-      dark: '#e9d6af',
+      light: '#ff7f7f',
+      default: '#e03535',
+      dark: '#8c162a',
     },
     gradient: {
       'g-01': 'linear-gradient(114deg, #fe382c 0%, #e51b15 100%)',
@@ -39,6 +40,13 @@ export default {
       'g-05': 'linear-gradient(114deg, #3bb7ea 0%, #0b6387 100%)',
       'g-06': 'linear-gradient(114deg, #f79d5e 0%, #ea6852 100%)',
     },
+  },
+  breakpoints: {
+    xs: '320px',
+    sm: '576px',
+    md: '768px',
+    lg: '992px',
+    xl: '1200px',
   },
   weight: {
     bold: '700',

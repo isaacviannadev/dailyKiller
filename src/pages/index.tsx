@@ -5,8 +5,13 @@ import { useAuth } from '../hooks/useAuth';
 
 import Head from 'next/head';
 import logoImg from '../assets/dklogo.svg';
+import Hand from '../assets/handHome.svg';
 import Button from '../components/UI/Button';
-import { CardPrincipalSC, ContainerSC } from '../styles/pages/home';
+import {
+  CardPrincipalSC,
+  ContainerSC,
+  DivButtonHomeSC,
+} from '../styles/pages/home';
 
 export default function Home() {
   const { loading, signInWithGoogle } = useAuth();
@@ -23,19 +28,30 @@ export default function Home() {
 
       <ContainerSC>
         <CardPrincipalSC>
-          <div>
+          <div className='ladoA'>
             <Image src={logoImg} alt='Logo' />
-            <h1>Mate sua daily, antes que ela te mate!</h1>
-          </div>
+            <h1>
+              Mate sua daily, <br /> antes que ela te mate!
+            </h1>
 
-          <Button
-            type='button'
-            isLoading={loading}
-            onClick={handleSignInWithGoogle}
-            disabled={loading}
-          >
-            Entrar com o Google
-          </Button>
+            <DivButtonHomeSC>
+              <Button
+                type='button'
+                isLoading={loading}
+                onClick={handleSignInWithGoogle}
+                disabled={loading}
+              >
+                Entrar com o Google
+              </Button>
+              <small>
+                <b>*</b> Na real, você não precisa desse app, era só mandar uma
+                mensagem no grupo
+              </small>
+            </DivButtonHomeSC>
+          </div>
+          <div className='ladoB'>
+            <Image src={Hand} alt='Mão dando dedo do meio' />
+          </div>
         </CardPrincipalSC>
       </ContainerSC>
     </>
