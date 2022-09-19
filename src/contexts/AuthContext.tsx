@@ -94,9 +94,9 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
 
   function signOut() {
     auth.signOut();
-    setUser(undefined);
     destroyCookie(null, 'dailyKiller.token');
     router.push('/');
+    setUser(undefined);
   }
 
   return (

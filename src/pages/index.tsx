@@ -12,11 +12,13 @@ import {
 } from '../styles/pages/home';
 
 export default function Home() {
-  const { loading, signInWithGoogle } = useAuth();
+  const { user, loading, signInWithGoogle } = useAuth();
 
   function handleSignInWithGoogle() {
     signInWithGoogle();
   }
+
+  console.log(user, 'user');
 
   return (
     <>

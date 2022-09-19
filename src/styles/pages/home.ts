@@ -57,11 +57,12 @@ export const CardPrincipalSC = styled.div`
     & .ladoB {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: end;
       width: 100%;
       min-width: 50%;
       height: 100%;
       overflow: hidden;
+      padding: 0;
 
       & img {
         width: 100%;
@@ -91,7 +92,9 @@ export const CardPrincipalSC = styled.div`
         justify-content: space-between;
       }
       & .ladoB {
-        padding: 0;
+        & img {
+          margin-bottom: -100px;
+        }
       }
     }
   `}
