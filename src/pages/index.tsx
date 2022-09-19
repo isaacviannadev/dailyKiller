@@ -1,9 +1,15 @@
+/* eslint-disable @next/next/no-img-element */
 import { GetServerSideProps } from 'next';
-import Image from 'next/image';
 import { parseCookies } from 'nookies';
 import { useAuth } from '../hooks/useAuth';
 
-import logoImg from '../assets/dklogo.svg';
+import Head from 'next/head';
+import Button from '../components/UI/Button';
+import {
+  CardPrincipalSC,
+  ContainerSC,
+  DivButtonHomeSC,
+} from '../styles/pages/home';
 
 export default function Home() {
   const { loading, signInWithGoogle } = useAuth();
@@ -13,24 +19,40 @@ export default function Home() {
   }
 
   return (
-    <div
-      style={{
-        width: '100%',
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
-    >
-      <div style={{ width: '200px' }}>
-        <Image src={logoImg} alt='Logo' />
-      </div>
-      <h2>Mate sua daily, antes que ela te mate!</h2>
+    <>
+      <Head>
+        <title>Home | dailyKiller</title>
+      </Head>
 
-      <button type='button' onClick={handleSignInWithGoogle}>
-        {loading ? 'Loading...' : 'Entrar com o Google'}
-      </button>
-    </div>
+      <ContainerSC>
+        <CardPrincipalSC>
+          <div className='ladoA'>
+            <img src='/assets/dklogo.svg' alt='Logo' />
+            <h1>
+              Mate sua daily, <br /> antes que ela te mate!
+            </h1>
+
+            <DivButtonHomeSC>
+              <Button
+                type='button'
+                isLoading={loading}
+                onClick={handleSignInWithGoogle}
+                disabled={loading}
+              >
+                Entrar com o Google
+              </Button>
+              <small>
+                <b>*</b> Na real, você não precisa desse app, era só mandar uma
+                mensagem no grupo
+              </small>
+            </DivButtonHomeSC>
+          </div>
+          <div className='ladoB'>
+            <img src='/assets/handHome.svg' alt='Mão dando dedo do meio' />
+          </div>
+        </CardPrincipalSC>
+      </ContainerSC>
+    </>
   );
 }
 
