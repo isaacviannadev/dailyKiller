@@ -83,11 +83,12 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
         });
 
         router.push('/dashboard');
-
-        setLoading(false);
       })
       .catch((error) => {
         throw new Error(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }
 

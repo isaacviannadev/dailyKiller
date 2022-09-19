@@ -36,7 +36,6 @@ export const CardPrincipalSC = styled.div`
       flex-direction: column;
       padding: ${theme.spacing.xs};
       align-items: center;
-      justify-content: center;
       text-align: center;
       height: 100%;
       gap: ${theme.spacing.md};
@@ -45,15 +44,21 @@ export const CardPrincipalSC = styled.div`
     }
 
     & .ladoA {
+      justify-content: space-between;
+
       & img {
         width: 100%;
+      }
+      h1 {
+        line-height: 1;
+        font-size: ${theme.fontsize['4xl']};
       }
     }
     & .ladoB {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: fit-content;
+      width: 100%;
       min-width: 50%;
       height: 100%;
       overflow: hidden;
@@ -67,28 +72,11 @@ export const CardPrincipalSC = styled.div`
     &::before {
       content: '';
       position: absolute;
-      top: -40px;
+      top: 0;
       right: 0;
-      width: 260px;
-      height: 200px;
-      border-top-left-radius: 50%;
-      border-bottom-left-radius: 50%;
-      background: ${theme.color.background.darkest};
-      z-index: 1;
-    }
-    &::after {
-      content: '';
-      position: absolute;
-      top: 100px;
-      right: -65px;
-      width: 180px;
-      height: 180px;
-      border-bottom-left-radius: 50%;
-      border-bottom-right-radius: 50%;
-      transform: rotate(-30deg);
-      z-index: 1;
-
-      background: ${theme.color.background.darkest};
+      width: 500px;
+      height: 600px;
+      background: url(/assets/ellipse.svg) no-repeat;
     }
 
     @media (min-width: ${theme.breakpoints.md}) {
@@ -99,10 +87,11 @@ export const CardPrincipalSC = styled.div`
         align-items: flex-start;
         text-align: left;
         width: 50%;
+        min-width: 50%;
         justify-content: space-between;
       }
       & .ladoB {
-        padding: 0 ${theme.spacing.xl};
+        padding: 0;
       }
     }
   `}
