@@ -1,14 +1,25 @@
+import Head from 'next/head';
 import Image from 'next/image';
+import { parseCookies } from 'nookies';
+import { ReactElement } from 'react';
+import DefaultLayout from '../../components/hoc/DefaultLayout';
 import { useAuth } from '../../hooks/useAuth';
+import { NextPageWithLayout } from '../_app';
 
-const Dashboard = () => {
+const Dashboard: NextPageWithLayout = () => {
   const { user, signOut } = useAuth();
 
+  const cookie = parseCookies();
+
+  console.log(cookie, user, 'cookie');
+
   return (
-    <div>
+    <>
+      <Head>
+        <title>Dashboard | dailyKiller</title>
+      </Head>
       <h1>Dashboard</h1>
       <p>Usuário logado</p>
-
       <p>{user?.name} </p>
       <p>{user?.email} </p>
 
@@ -17,8 +28,12 @@ const Dashboard = () => {
       )}
 
       <button onClick={signOut}>Deslogar</button>
-    </div>
+    </>
   );
+};
+
+Dashboard.getLayout = function getLayout(page: ReactElement) {
+  return <DefaultLayout>{page}</DefaultLayout>;
 };
 
 export default Dashboard;
