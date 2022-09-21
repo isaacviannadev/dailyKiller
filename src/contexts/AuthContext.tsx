@@ -4,11 +4,12 @@ import { destroyCookie, setCookie } from 'nookies';
 import { createContext, ReactNode, useEffect, useState } from 'react';
 import { auth } from '../lib/firebase';
 
-type User = {
+export type User = {
   id: string;
   name: string;
   avatar: string;
   email: string;
+  createdAt: string;
 };
 
 type AuthContextType = {
@@ -16,6 +17,8 @@ type AuthContextType = {
   signInWithGoogle: () => void;
   loading: boolean;
   signOut: () => void;
+  loggedIn: boolean;
+  checkingStatus: boolean;
 };
 
 type AuthContextProviderProps = {
@@ -27,27 +30,44 @@ export const AuthContext = createContext({} as AuthContextType);
 export function AuthProvider({ children }: AuthContextProviderProps) {
   const [user, setUser] = useState<User>();
   const [loading, setLoading] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [checkingStatus, setCheckingStatus] = useState(true);
 
   const router = useRouter();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        const { displayName, photoURL, uid, email } = user;
+        const {
+          displayName,
+          photoURL,
+          uid,
+          email,
+          metadata: { creationTime },
+        } = user;
+        console.log('user', user);
 
         if (!displayName || !photoURL) {
           throw new Error('Missing information from Google Account.');
         }
+
+        const createdFormatDate = new Date(
+          '' + creationTime
+        ).toLocaleDateString('pt-BR');
 
         setUser({
           id: uid,
           name: displayName,
           avatar: photoURL,
           email: email || '',
+          createdAt: createdFormatDate || '',
         });
 
-        // router.push('/');
+        setLoggedIn(true);
+      } else {
+        router.push('/');
       }
+      setCheckingStatus(false);
     });
 
     return () => {
@@ -63,7 +83,13 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
 
     result
       .then((result) => {
-        const { displayName, photoURL, uid, email } = result.user;
+        const {
+          displayName,
+          photoURL,
+          uid,
+          email,
+          metadata: { creationTime },
+        } = result.user;
 
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential?.accessToken;
@@ -74,12 +100,16 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
             path: '/',
           });
         }
+        const createdFormatDate = new Date(
+          '' + creationTime
+        ).toLocaleDateString('pt-BR');
 
         setUser({
           id: uid,
           name: displayName || 'Usuário Burro que não tem nome',
           avatar: photoURL || '',
           email: email || '',
+          createdAt: createdFormatDate || '',
         });
 
         router.push('/dashboard');
@@ -102,11 +132,19 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
         destroyCookie(null, 'dailyKiller.token');
         setUser(undefined);
       });
-
   }
 
   return (
-    <AuthContext.Provider value={{ user, loading, signInWithGoogle, signOut }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        loading,
+        signInWithGoogle,
+        signOut,
+        loggedIn,
+        checkingStatus,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

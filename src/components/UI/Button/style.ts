@@ -74,6 +74,7 @@ export const StyledButton = styled.button<ButtonPropsSC>`
     }
 
     span {
+      display: inline-block;
       margin: 0 8px;
     }
 

@@ -18,8 +18,6 @@ export default function Home() {
     signInWithGoogle();
   }
 
-  console.log(user, 'user');
-
   return (
     <>
       <Head>
