@@ -1,4 +1,4 @@
-import { SpinnerGap } from 'phosphor-react';
+import { CircleNotch } from 'phosphor-react';
 import { ButtonHTMLAttributes } from 'react';
 import { StyledButton } from './style';
 
@@ -8,7 +8,7 @@ interface IButtonProps extends ButtonProps {
   children: React.ReactNode;
   icon?: React.ReactNode;
   isLoading?: boolean;
-  variant?: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary' | 'tertiary';
   size?: 'sm' | 'lg' | 'md';
   fullWidth?: boolean;
 }
@@ -25,7 +25,7 @@ const Button = ({
   return (
     <StyledButton variant={variant} size={size} {...props}>
       <span>{children}</span>
-      {isLoading && <SpinnerGap className='load-icon' size={24} />}
+      {isLoading && <CircleNotch className='load-icon' size={20} />}
     </StyledButton>
   );
 };

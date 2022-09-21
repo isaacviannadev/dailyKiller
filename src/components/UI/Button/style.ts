@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 const crossButtonType = {
   primary: css`
@@ -11,6 +11,11 @@ const crossButtonType = {
     color: ${({ theme }) => theme.color.main[900]};
     box-shadow: 4px 4px ${({ theme }) => theme.color.main[900]};
   `,
+  tertiary: css`
+    background-color: ${({ theme }) => theme.color.secondary[700]};
+    color: ${({ theme }) => theme.color.background.darkest};
+    box-shadow: 4px 4px ${({ theme }) => theme.color.main[700]};
+  `,
 };
 
 const crossButtonSize = {
@@ -20,16 +25,25 @@ const crossButtonSize = {
     font-size: ${({ theme }) => theme.fontsize.s1};
   `,
   md: css`
-    width: 6rem;
+    width: 4rem;
     height: 4rem;
     font-size: ${({ theme }) => theme.fontsize.m};
   `,
   lg: css`
-    width: 8rem;
+    width: 5rem;
     height: 5rem;
     font-size: ${({ theme }) => theme.fontsize.l};
   `,
 };
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
 
 type ButtonPropsSC = {
   variant: keyof typeof crossButtonType;
@@ -45,10 +59,9 @@ export const StyledButton = styled.button<ButtonPropsSC>`
     font-weight: ${theme.weight.bold};
     padding: 0 ${theme.spacing.sm};
     cursor: pointer;
-    gap: ${theme.spacing.xxs};
-    position: relative;
     transform: translate(-4px, -4px);
     transition: all 0.2s ease;
+    position: relative;
 
     ${crossButtonType[variant]};
     ${crossButtonSize[size]};
@@ -59,11 +72,15 @@ export const StyledButton = styled.button<ButtonPropsSC>`
       transform: translate(0, 0);
       box-shadow: 2px 2px;
     }
-  `}
 
-  span {
-    display: inline-block;
-    height: auto;
-    line-height: 3;
-  }
+    span {
+      margin: 0 8px;
+    }
+
+    .load-icon {
+      position: absolute;
+      animation: ${rotate} 1s infinite;
+      right: 10px;
+    }
+  `}
 `;
