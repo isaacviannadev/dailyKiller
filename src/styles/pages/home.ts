@@ -48,6 +48,7 @@ export const CardPrincipalSC = styled.div`
 
       & img {
         width: 100%;
+        filter: drop-shadow(3px 5px 2px ${theme.color.background.darkest});
       }
       h1 {
         line-height: 1;

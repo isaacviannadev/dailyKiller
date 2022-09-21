@@ -24,8 +24,9 @@ export const LogoutButtonSC = styled.button`
   border: none;
   background-color: transparent;
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   color: ${({ theme }) => theme.color.main[700]};
+  gap: 6px;
 
   &:hover {
     color: ${({ theme }) => theme.color.error.dark};

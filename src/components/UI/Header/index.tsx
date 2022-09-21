@@ -19,6 +19,7 @@ const Header = () => {
       <Tooltip content='Ir embora!'>
         <LogoutButtonSC onClick={signOut}>
           <SmileyXEyes size={24} />
+          <span>Sair</span>
         </LogoutButtonSC>
       </Tooltip>
     </HeaderSC>
