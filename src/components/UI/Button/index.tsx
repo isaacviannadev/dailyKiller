@@ -8,11 +8,22 @@ interface IButtonProps extends ButtonProps {
   children: React.ReactNode;
   icon?: React.ReactNode;
   isLoading?: boolean;
+  variant?: 'primary' | 'secondary';
+  size?: 'sm' | 'lg' | 'md';
+  fullWidth?: boolean;
 }
 
-const Button = ({ children, icon, isLoading, ...props }: IButtonProps) => {
+const Button = ({
+  children,
+  icon,
+  isLoading,
+  variant = 'primary',
+  size = 'md',
+  fullWidth = false,
+  ...props
+}: IButtonProps) => {
   return (
-    <StyledButton {...props}>
+    <StyledButton variant={variant} size={size} {...props}>
       <span>{children}</span>
       {isLoading && <SpinnerGap className='load-icon' size={24} />}
     </StyledButton>

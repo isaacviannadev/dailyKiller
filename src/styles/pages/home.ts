@@ -107,6 +107,8 @@ export const DivButtonHomeSC = styled.div`
     align-items: center;
     justify-content: center;
     width: 100%;
+    position: relative;
+    gap: 10px;
 
     button {
       width: 100%;

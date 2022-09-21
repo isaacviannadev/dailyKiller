@@ -40,6 +40,7 @@ export default function Home() {
                 isLoading={loading}
                 onClick={handleSignInWithGoogle}
                 disabled={loading}
+                size='lg'
               >
                 Entrar com o Google
               </Button>
