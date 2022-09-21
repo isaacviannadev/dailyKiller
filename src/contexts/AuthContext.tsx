@@ -93,10 +93,16 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
   }
 
   function signOut() {
-    auth.signOut();
-    destroyCookie(null, 'dailyKiller.token');
-    router.push('/');
-    setUser(undefined);
+    auth
+      .signOut()
+      .then(() => {
+        router.push('/');
+      })
+      .finally(() => {
+        destroyCookie(null, 'dailyKiller.token');
+        setUser(undefined);
+      });
+
   }
 
   return (

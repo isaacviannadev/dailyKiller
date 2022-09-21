@@ -48,6 +48,7 @@ export const CardPrincipalSC = styled.div`
 
       & img {
         width: 100%;
+        filter: drop-shadow(3px 5px 2px ${theme.color.background.darkest});
       }
       h1 {
         line-height: 1;
@@ -107,6 +108,7 @@ export const DivButtonHomeSC = styled.div`
     align-items: center;
     justify-content: center;
     width: 100%;
+    gap: 10px;
 
     button {
       width: 100%;
@@ -114,7 +116,6 @@ export const DivButtonHomeSC = styled.div`
 
     small {
       font-size: ${theme.fontsize.xs};
-      opacity: ${theme.opacity.medium};
     }
 
     small b {

@@ -40,6 +40,8 @@ export default function Home() {
                 isLoading={loading}
                 onClick={handleSignInWithGoogle}
                 disabled={loading}
+                variant='tertiary'
+                size='lg'
               >
                 Entrar com o Google
               </Button>
@@ -68,7 +70,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         permanent: false,
       },
     };
-  }
+  } 
 
   return {
     props: {},
