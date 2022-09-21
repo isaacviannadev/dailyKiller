@@ -107,7 +107,6 @@ export const DivButtonHomeSC = styled.div`
     align-items: center;
     justify-content: center;
     width: 100%;
-    position: relative;
     gap: 10px;
 
     button {
@@ -116,7 +115,6 @@ export const DivButtonHomeSC = styled.div`
 
     small {
       font-size: ${theme.fontsize.xs};
-      opacity: ${theme.opacity.medium};
     }
 
     small b {
