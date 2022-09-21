@@ -23,7 +23,12 @@ const Button = ({
   ...props
 }: IButtonProps) => {
   return (
-    <StyledButton variant={variant} size={size} {...props}>
+    <StyledButton
+      variant={variant}
+      size={size}
+      fullWidth={fullWidth}
+      {...props}
+    >
       <span>{children}</span>
       {isLoading && <CircleNotch className='load-icon' size={20} />}
     </StyledButton>
