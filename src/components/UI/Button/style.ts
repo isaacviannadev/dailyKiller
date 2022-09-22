@@ -68,11 +68,12 @@ export const StyledButton = styled.button<ButtonPropsSC>`
 
     ${fullWidth && `width: 100%;`}
 
-    &:hover {
+    &:hover,
+    &:focus {
       transform: translate(-2px, -2px);
       box-shadow: 3px 3px;
     }
-    &:focus {
+    &:active {
       transform: translate(0, 0);
       box-shadow: 2px 2px;
     }
