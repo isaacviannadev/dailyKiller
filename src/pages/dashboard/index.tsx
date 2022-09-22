@@ -2,9 +2,9 @@ import Head from 'next/head';
 import { ReactElement } from 'react';
 import DefaultLayout from '../../components/hoc/DefaultLayout';
 import ProfileCard from '../../components/molecules/ProfileCard';
+import UnMotivated from '../../components/molecules/UnMotivated';
 import Divider from '../../components/UI/DIvider';
 import { useAuth } from '../../hooks/useAuth';
-import { frasesDesmotivacionais } from '../../lib/motivador';
 import { NextPageWithLayout } from '../_app';
 
 const Dashboard: NextPageWithLayout = () => {
@@ -13,8 +13,6 @@ const Dashboard: NextPageWithLayout = () => {
   if (!loggedIn) {
     return <h1>Carregando...</h1>;
   }
-
-  const day = new Date().getDate() - 1;
 
   return (
     <>
@@ -27,7 +25,7 @@ const Dashboard: NextPageWithLayout = () => {
       </div>
 
       <div className='motivation'>
-        <h1>{frasesDesmotivacionais[day]}</h1>
+        <UnMotivated />
         <Divider />
       </div>
 
