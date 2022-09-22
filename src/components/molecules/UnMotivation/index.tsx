@@ -25,7 +25,7 @@ const UnMotivationSC = styled.div`
       content: '"';
       position: absolute;
       top: -30px;
-      left: -20px;
+      left: 0;
       font-size: 12rem;
       z-index: -1;
       color: ${theme.color.background.darkest};
