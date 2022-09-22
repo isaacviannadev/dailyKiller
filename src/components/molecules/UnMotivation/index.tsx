@@ -84,19 +84,21 @@ const UnMotivation = () => {
 
   const storageShowFrase = localStorage.getItem('showFrase');
 
-  console.log(storageShowFrase, 'storageShowFrase');
-
   useEffect(() => {
     if (storageShowFrase) {
       const { showFrase: storageShowFraseValue, dia } =
         JSON.parse(storageShowFrase);
       if (day !== dia - 1) {
         localStorage.removeItem('showFrase');
+        setShowFrase(false);
+      }
+      if (storageShowFraseValue) {
         setShowFrase(storageShowFraseValue);
       }
-      handleShowFrase();
+    } else {
+      setShowFrase(false);
     }
-  }, []);
+  }, [storageShowFrase, day]);
 
   return (
     <UnMotivationSC>
