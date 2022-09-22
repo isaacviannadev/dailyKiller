@@ -115,6 +115,11 @@ export default class MyDocument extends Document {
             content='/favicon/ms-icon-144x144.png'
           />
           <meta name='theme-color' content='#E9D6AF'></meta>
+
+          <meta
+            name='apple-mobile-web-app-status-bar-style'
+            content='#E9D6AF'
+          ></meta>
         </Head>
         <body>
           <Main />
