@@ -1,8 +1,9 @@
 import Head from 'next/head';
-import Image from 'next/image';
 import { ReactElement } from 'react';
 import DefaultLayout from '../../components/hoc/DefaultLayout';
 import ProfileCard from '../../components/molecules/ProfileCard';
+import UnMotivated from '../../components/molecules/UnMotivated';
+import Divider from '../../components/UI/DIvider';
 import { useAuth } from '../../hooks/useAuth';
 import { NextPageWithLayout } from '../_app';
 
@@ -24,18 +25,22 @@ const Dashboard: NextPageWithLayout = () => {
       </div>
 
       <div className='motivation'>
-        <h1></h1>
+        <UnMotivated />
+        <Divider />
       </div>
 
       <div className='description'>
-        {user?.avatar && (
-          <Image src={user?.avatar} alt={user?.name} width={200} height={200} />
-        )}
+        <h3>
+          Aqui você realmente não tem muita coisa pra fazer, a ideia é vc ficar
+          o mínimo possível logado aqui.
+        </h3>
+        <p>
+          (nós também não queremos dar suporte, então se vira com o que tem)
+        </p>
       </div>
 
       <div className='board'>
-        <p>{user?.name} </p>
-        <p>{user?.email} </p>
+        <h1>Board</h1>
       </div>
     </>
   );

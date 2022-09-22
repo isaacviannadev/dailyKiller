@@ -20,17 +20,17 @@ const crossButtonType = {
 
 const crossButtonSize = {
   sm: css`
-    width: 4rem;
+    width: fit-content;
     height: 4rem;
     font-size: ${({ theme }) => theme.fontsize.s1};
   `,
   md: css`
-    width: 4rem;
+    width: fit-content;
     height: 4rem;
     font-size: ${({ theme }) => theme.fontsize.m};
   `,
   lg: css`
-    width: 5rem;
+    width: fit-content;
     height: 5rem;
     font-size: ${({ theme }) => theme.fontsize.l};
   `,
