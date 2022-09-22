@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { ReactElement } from 'react';
 import DefaultLayout from '../../components/hoc/DefaultLayout';
 import ProfileCard from '../../components/molecules/ProfileCard';
-import UnMotivated from '../../components/molecules/UnMotivated';
+import UnMotivation from '../../components/molecules/UnMotivation';
 import Divider from '../../components/UI/DIvider';
 import { useAuth } from '../../hooks/useAuth';
 import { NextPageWithLayout } from '../_app';
@@ -25,7 +25,7 @@ const Dashboard: NextPageWithLayout = () => {
       </div>
 
       <div className='motivation'>
-        <UnMotivated />
+        <UnMotivation />
         <Divider />
       </div>
 

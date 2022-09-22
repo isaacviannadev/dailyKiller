@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { frasesDesmotivacionais } from '../../../lib/motivador';
 import Button from '../../UI/Button';
 
-const UnMotivatedSC = styled.div`
+const UnMotivationSC = styled.div`
   ${({ theme }) => css`
     display: flex;
     flex-direction: column;
@@ -69,7 +69,7 @@ const FraseOverlay = styled.div`
   `}
 `;
 
-const UnMotivated = () => {
+const UnMotivation = () => {
   const [showFrase, setShowFrase] = useState(false);
 
   const day = new Date().getDate() - 1;
@@ -99,7 +99,7 @@ const UnMotivated = () => {
   }, []);
 
   return (
-    <UnMotivatedSC>
+    <UnMotivationSC>
       {!showFrase && (
         <FraseOverlay>
           <h3>Quer mesmo ver a frase do dia?</h3>
@@ -108,8 +108,8 @@ const UnMotivated = () => {
         </FraseOverlay>
       )}
       <h1>{frasesDesmotivacionais[day]}</h1>
-    </UnMotivatedSC>
+    </UnMotivationSC>
   );
 };
 
-export default UnMotivated;
+export default UnMotivation;
