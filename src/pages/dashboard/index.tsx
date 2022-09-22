@@ -11,7 +11,8 @@ import { useAuth } from '../../hooks/useAuth';
 import { NextPageWithLayout } from '../_app';
 
 const Dashboard: NextPageWithLayout = () => {
-  const { loggedIn } = useAuth();
+  const { user, loggedIn } = useAuth();
+
 
   if (!loggedIn) {
     return <h1>Carregando...</h1>;
