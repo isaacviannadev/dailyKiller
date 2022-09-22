@@ -2,7 +2,7 @@ import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import { destroyCookie, setCookie } from 'nookies';
 import { createContext, ReactNode, useEffect, useState } from 'react';
-import { auth } from '../lib/firebase';
+import { auth } from '../services/firebase';
 
 export type User = {
   id: string;
