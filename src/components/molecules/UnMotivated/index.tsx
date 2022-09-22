@@ -76,13 +76,24 @@ const UnMotivated = () => {
 
   const handleShowFrase = () => {
     setShowFrase(!showFrase);
-    localStorage.setItem('showFrase', JSON.stringify(!showFrase));
+    localStorage.setItem(
+      'showFrase',
+      JSON.stringify({ showFrase: !showFrase, dia: day + 1 })
+    );
   };
 
   const storageShowFrase = localStorage.getItem('showFrase');
 
+  console.log(storageShowFrase, 'storageShowFrase');
+
   useEffect(() => {
     if (storageShowFrase) {
+      const { showFrase: storageShowFraseValue, dia } =
+        JSON.parse(storageShowFrase);
+      if (day !== dia - 1) {
+        localStorage.removeItem('showFrase');
+        setShowFrase(storageShowFraseValue);
+      }
       handleShowFrase();
     }
   }, []);
