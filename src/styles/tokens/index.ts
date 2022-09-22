@@ -107,6 +107,7 @@ export default {
     xg: '7.2rem',
     xxg: '8rem',
     xxxg: '12rem',
+    full: '50%',
   },
   family: {
     primary: 'Miriam Libre',

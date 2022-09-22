@@ -18,16 +18,26 @@ const UnMotivationSC = styled.div`
       text-align: right;
       max-width: 70%;
       position: relative;
-      padding: 20px 20px 40px 0;
+      padding: 20px 20px 30px 0;
     }
 
     h1::before {
       content: '"';
       position: absolute;
       top: -30px;
-      left: 0;
+      left: -20px;
       font-size: 12rem;
+      z-index: -1;
       color: ${theme.color.background.darkest};
+    }
+
+    @media only screen and (max-width: ${theme.breakpoints.md}) {
+      h1 {
+        max-width: unset;
+        padding: 20px 0 10px 50px;
+
+        font-size: ${theme.fontsize['3xl']};
+      }
     }
   `}
 `;
@@ -47,16 +57,12 @@ const FraseOverlay = styled.div`
     font-weight: bold;
     border-radius: 12px;
     z-index: 4;
+    text-align: center;
 
     background: rgba(211, 187, 136, 0.25);
     box-shadow: 0 8px 32px 0 rgba(211, 187, 136, 0.7);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.18);
-
-    & > h3 {
-      text-align: center;
-      max-width: 70%;
-    }
 
     & small {
       display: block;

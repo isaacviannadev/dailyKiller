@@ -8,11 +8,11 @@ type DividerProps = {
 const crossDividerType = {
   horizontal: css`
     width: 100%;
-    height: 2px;
+    height: 1px;
     margin: ${({ theme }) => theme.spacing.xxs} 0;
   `,
   vertical: css`
-    width: 2px;
+    width: 1px;
     height: 100%;
     margin: 0 ${({ theme }) => theme.spacing.xxs};
   `,

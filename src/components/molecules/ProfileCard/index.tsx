@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { useEffect, useState } from 'react';
 import { useAuth } from '../../../hooks/useAuth';
 import Button from '../../UI/Button';
 import Divider from '../../UI/DIvider';
@@ -12,7 +13,22 @@ import {
 
 const ProfileCard = () => {
   const { user } = useAuth();
-  console.log(user);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setIsMobile(true);
+      } else {
+        setIsMobile(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <ProfileCardWrapperSC>
@@ -20,10 +36,11 @@ const ProfileCard = () => {
         {user && user.avatar && <img src={user.avatar} alt={user.name} />}
       </AvatarSC>
       <ProfileCardSC>
-        <h1>{user?.name}</h1>
-        <Divider />
-
-        <ProfileCardInfoDivSC>
+        <ProfileCardInfoDivSC style={{ paddingTop: '0' }}>
+          <ProfileCardInfoSC>
+            <h1>{user?.name}</h1>
+            <Divider />
+          </ProfileCardInfoSC>
           <ProfileCardInfoSC>
             <img src='/assets/icons/shuriken.svg' alt='Contato' />
             <span>Contato</span>
@@ -37,26 +54,32 @@ const ProfileCard = () => {
           </ProfileCardInfoSC>
         </ProfileCardInfoDivSC>
 
-        <h1>Suas opções</h1>
-        <Divider />
-
         <ProfileCardInfoDivSC style={{ justifyContent: 'space-between' }}>
-          <ProfileCardInfoDivSC style={{ padding: '0' }}>
-            <Button fullWidth size='lg'>
+          <ProfileCardInfoSC>
+            <h1>Suas opções</h1>
+            <Divider />
+          </ProfileCardInfoSC>
+          <ProfileCardInfoDivSC
+            style={{ padding: '0' }}
+            className={isMobile ? 'mobile' : ''}
+          >
+            <Button fullWidth={!isMobile} size={isMobile ? 'sm' : 'lg'}>
               Criar um time
             </Button>
-            <Button fullWidth size='lg'>
+            <Button fullWidth={!isMobile} size={isMobile ? 'sm' : 'lg'}>
               Ver meu time
             </Button>
-            <Button fullWidth variant='secondary' size='lg'>
+            <Button
+              fullWidth={!isMobile}
+              variant='secondary'
+              size={isMobile ? 'sm' : 'lg'}
+            >
               Pedir demissão e ser feliz
             </Button>
           </ProfileCardInfoDivSC>
-
-          <small>
-            Não tem o que procura?
-            <br /> Ótimo, nem vai ter!
-          </small>
+          <ProfileCardInfoSC>
+            <small>Não tem o que procura? Ótimo, nem vai ter!</small>
+          </ProfileCardInfoSC>
         </ProfileCardInfoDivSC>
       </ProfileCardSC>
     </ProfileCardWrapperSC>

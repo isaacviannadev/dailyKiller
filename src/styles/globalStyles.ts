@@ -22,6 +22,21 @@ const GlobalStyles: GlobalStyleComponent<
     background-repeat: no-repeat;
   }
 
+    *::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+    *::-webkit-scrollbar-track {
+      background-color: ${theme.color.background.default};
+    }
+    *::-webkit-scrollbar-thumb {
+      background-color: ${theme.color.background.dark};
+      border-radius: 10px;
+    }
+    *::-webkit-scrollbar-thumb:hover {
+      background-color: ${theme.color.background.darkest};
+    }
+
   ::before,
   ::after {
     text-decoration: inherit;
