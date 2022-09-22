@@ -2,7 +2,8 @@ import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import { destroyCookie, setCookie } from 'nookies';
 import { createContext, ReactNode, useEffect, useState } from 'react';
-import { auth } from '../lib/firebase';
+import { auth } from '../services/firebase';
+import { registerUser } from '../services/firestore';
 
 export type User = {
   id: string;
@@ -45,7 +46,6 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
           email,
           metadata: { creationTime },
         } = user;
-        console.log('user', user);
 
         if (!displayName || !photoURL) {
           throw new Error('Missing information from Google Account.');
@@ -74,6 +74,12 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
       unsubscribe();
     };
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      registerUser(user);
+    }
+  }, [user]);
 
   async function signInWithGoogle() {
     setLoading(true);

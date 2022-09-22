@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
-import { frasesDesmotivacionais } from '../../../lib/motivador';
+import { frasesDesmotivacionais } from '../../../services/motivador';
 import Button from '../../UI/Button';
 
 const UnMotivationSC = styled.div`
