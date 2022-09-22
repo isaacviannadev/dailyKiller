@@ -1,44 +1,71 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const LayoutSC = styled.div`
-  display: grid;
-  grid-template: auto 1fr / 1fr;
-  height: 100vh;
-  width: 100vw;
-
-  main {
+  ${({ theme }) => css`
     display: grid;
-    grid-gap: 20px;
-    padding: 20px;
+    grid-template: auto 1fr / 1fr;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
 
-    grid-template-areas:
-      'profile motivation'
-      'profile description'
-      'profile board';
-
-    grid-template-rows: auto auto 1fr;
-    grid-template-columns: auto 1fr;
-
-    & div.profile {
+    main {
       display: grid;
-      grid-area: profile;
+      grid-gap: 20px;
+      padding: 20px;
+      overflow: auto;
+
+      grid-template-areas:
+        'profile motivation'
+        'profile description'
+        'profile board';
+
+      grid-template-rows: auto auto 1fr;
+      grid-template-columns: auto 1fr;
+
+      & div.profile {
+        display: grid;
+        grid-area: profile;
+        position: sticky;
+        height: fit-content;
+        top: 0;
+      }
+
+      & div.motivation {
+        display: grid;
+        grid-area: motivation;
+      }
+
+      & div.description {
+        display: grid;
+        grid-area: description;
+      }
+
+      & div.board {
+        display: grid;
+        grid-area: board;
+      }
+
+      @media only screen and (max-width: ${theme.breakpoints.md}) {
+        grid-template-areas:
+          'profile'
+          'motivation'
+          'description'
+          'board';
+        column-gap: 0;
+        grid-template-rows: auto;
+
+        row-gap: 8px;
+
+        & div.profile {
+          position: relative;
+        }
+      }
     }
 
-    & div.motivation {
-      display: grid;
-      grid-area: motivation;
+    @media only screen and (max-width: ${theme.breakpoints.md}) {
+      grid-template: auto / auto;
     }
-
-    & div.description {
-      display: grid;
-      grid-area: description;
-    }
-
-    & div.board {
-      display: grid;
-      grid-area: board;
-    }
-  }
+  `}
 `;
 
 export const LogoutButtonSC = styled.button`
