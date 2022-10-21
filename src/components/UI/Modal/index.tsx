@@ -6,7 +6,6 @@ import {
   ModalCloseButton,
   ModalCloseIcon,
   ModalContent,
-  ModalContentText,
   ModalFooter,
   ModalHeader,
   ModalTitle,
@@ -55,9 +54,7 @@ const Modal = ({
               </ModalCloseIcon>
             </ModalCloseButton>
           </ModalHeader>
-          <ModalBody>
-            <ModalContentText>{children}</ModalContentText>
-          </ModalBody>
+          <ModalBody>{children}</ModalBody>
           {footer && <ModalFooter>{footer}</ModalFooter>}
         </ModalContent>
       </ModalWrapper>

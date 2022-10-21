@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '../../../hooks/useAuth';
 import Button from '../../UI/Button';
 import Divider from '../../UI/DIvider';
-import Modal from '../Modal';
+import ModalCreateTeam from '../ModalCreateTeam';
 import {
   AvatarSC,
   ProfileCardInfoDivSC,
@@ -103,14 +103,7 @@ const ProfileCard = () => {
       </ProfileCardWrapperSC>
 
       {isModalOpen && (
-        <Modal
-          size='md'
-          isOpen={isModalOpen}
-          onClose={handleModal}
-          footer={<Button onClick={handleModal}>Fechar</Button>}
-        >
-          <p>Modal</p>
-        </Modal>
+        <ModalCreateTeam isOpen={isModalOpen} onClose={handleModal} />
       )}
     </>
   );

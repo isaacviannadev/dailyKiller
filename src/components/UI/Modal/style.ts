@@ -52,6 +52,7 @@ export const ModalHeader = styled.div`
 
 export const ModalBody = styled.div`
   display: flex;
+  flex-direction: column;
   height: 100%;
   width: 100%;
   margin-bottom: ${({ theme }) => theme.spacing.xs};
@@ -64,6 +65,7 @@ export const ModalFooter = styled.footer`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  gap: ${({ theme }) => theme.spacing.xs};
 `;
 
 export const ModalTitle = styled.div`
@@ -81,9 +83,4 @@ export const ModalCloseButton = styled.button`
 export const ModalCloseIcon = styled.div`
   width: 20px;
   height: 20px;
-`;
-
-export const ModalContentText = styled.div`
-  font-size: ${({ theme }) => theme.fontsize['l']};
-  font-weight: 500;
 `;
