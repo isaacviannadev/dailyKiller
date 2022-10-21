@@ -23,6 +23,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
       <ThemeProvider theme={theme}>
         <Tooltip.Provider>
           {getLayout(<Component {...pageProps} />)}
+          <div id='modal-root' />
           <GlobalStyles />
         </Tooltip.Provider>
       </ThemeProvider>
