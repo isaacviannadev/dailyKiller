@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useState } from 'react';
+import { Toaster } from 'react-hot-toast';
 import { useAuth } from '../../../hooks/useAuth';
 import Button from '../../UI/Button';
 import Divider from '../../UI/DIvider';
@@ -40,6 +41,7 @@ const ProfileCard = () => {
 
   return (
     <>
+      <Toaster />
       <ProfileCardWrapperSC>
         <AvatarSC>
           {user && user.avatar && (

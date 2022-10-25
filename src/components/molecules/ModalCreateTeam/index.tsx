@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import { useAuth } from '../../../hooks/useAuth';
-import { findUserByEmail } from '../../../services/firestore';
+import { createTeam } from '../../../services/firestore';
 import Button from '../../UI/Button';
 import { Input } from '../../UI/Input';
 import Modal from '../../UI/Modal';
@@ -17,7 +18,7 @@ const ModalCreateTeam = ({ isOpen, onClose }: ModalCreateTeamProps) => {
   const [teamName, setTeamName] = useState('');
   const [teamMembers, setTeamMembers] = useState<SelectedUser[]>([]);
   const [teamDescription, setTeamDescription] = useState('');
-  const [error, setError] = useState('');
+  const [error, setError] = useState({} as { [key: string]: string });
 
   const handleAddMember = (member: SelectedUser) => {
     setTeamMembers([...teamMembers, member]);
@@ -29,81 +30,87 @@ const ModalCreateTeam = ({ isOpen, onClose }: ModalCreateTeamProps) => {
 
   const handleCreateTeam = async () => {
     if (!teamName) {
-      setError('Team name is required');
+      setError((prev) => ({
+        ...prev,
+        teamName: 'Nome do time é o mínimo né! Preguiçoso!',
+      }));
       return;
     }
 
-    if (teamMembers.length === 0) {
-      setError('Team members are required');
-      return;
+    if (user) {
+      const team = {
+        name: teamName,
+        description: teamDescription,
+        members: teamMembers,
+        owner: user,
+      };
+
+      createTeam(team)
+        .then(() => {
+          toast.success('Team criado com sucesso!');
+          setTimeout(() => {
+            onClose();
+          }, 1000);
+        })
+        .catch((err) => {
+          toast.error('Erro ao criar o time');
+          console.log(err);
+        });
     }
-
-    const team = {
-      name: teamName,
-      description: teamDescription,
-      members: teamMembers,
-    };
-
-    console.log(team);
   };
+
+  function handleValueChange(value: string, name: string) {
+    if (name === 'teamName') {
+      setTeamName(value);
+      setError((prev) => ({ ...prev, teamName: '' }));
+    } else if (name === 'teamDescription') {
+      setTeamDescription(value);
+    }
+  }
 
   const Footer = (
     <>
       <Button variant='secondary' onClick={onClose}>
         Fechar
       </Button>
-      <Button variant='tertiary' onClick={onClose}>
+      <Button variant='tertiary' onClick={handleCreateTeam}>
         Criar time
       </Button>
     </>
   );
 
-  const payload = {
-    name: teamName,
-    description: teamDescription,
-    members: teamMembers,
-    owner: {
-      id: user?.id,
-      name: user?.name,
-      email: user?.email,
-    },
-    createdAt: new Date(),
-  };
-
-  function handleSubmit(event: React.FormEvent) {
-    event.preventDefault();
-  }
-
-  function autocomplete(input: string) {
-    findUserByEmail(input);
-  }
-
   return (
-    <Modal
-      size='lg'
-      title='Criar time'
-      isOpen={isOpen}
-      onClose={onClose}
-      footer={Footer}
-    >
-      <FormContent>
-        <Input
-          label='Nome do time'
-          placeholder='Digite o nome do time'
-          onChange={(e) => setTeamName}
-        />
-        <Input
-          label='Descrição'
-          placeholder='Digite a descrição do time'
-          onChange={(e) => setTeamDescription}
-        />
-        <AutoComplete
-          onSelect={(option) => handleAddMember(option)}
-          onRemove={(option) => handleRemoveMember(option)}
-          selecteds={teamMembers}
-        />
-      </FormContent>
-    </Modal>
+    <>
+      <Modal
+        size='lg'
+        title='Criar time'
+        isOpen={isOpen}
+        onClose={onClose}
+        footer={Footer}
+      >
+        <FormContent>
+          <Input
+            label='Nome do time'
+            placeholder='Digite o nome do time'
+            onChange={(e) => handleValueChange(e.target.value, 'teamName')}
+            hasError={!!error.teamName}
+            error={error.teamName}
+          />
+          <Input
+            label='Descrição'
+            placeholder='Digite a descrição do time'
+            onChange={(e) =>
+              handleValueChange(e.target.value, 'teamDescription')
+            }
+          />
+          <AutoComplete
+            onSelect={(option) => handleAddMember(option)}
+            onRemove={(option) => handleRemoveMember(option)}
+            selecteds={teamMembers}
+          />
+        </FormContent>
+      </Modal>
+    </>
   );
 };
 

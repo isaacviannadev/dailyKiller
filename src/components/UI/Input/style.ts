@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { CrossInputProps } from '.';
 
 export const InputWrapper = styled.div`
   display: flex;
@@ -13,7 +14,7 @@ export const InputLabel = styled.label`
   margin-bottom: ${({ theme }) => theme.spacing.xxs};
 `;
 
-export const InputField = styled.input`
+export const InputField = styled.input<CrossInputProps>`
   width: 100%;
   height: 40px;
   border: 2px solid ${({ theme }) => theme.color.background.dark};
@@ -25,7 +26,16 @@ export const InputField = styled.input`
   outline: none;
   transition: all 0.2s ease-in-out;
 
-  &:focus {
+  &.error {
+    border-color: ${({ theme }) => theme.color.error.default};
+    color: ${({ theme }) => theme.color.error.default};
+  }
+
+  &.error:focus {
+    border-color: ${({ theme }) => theme.color.error.dark};
+  }
+
+  &:focus:not(.error) {
     border: 2px solid ${({ theme }) => theme.color.background.darkest};
   }
 
@@ -44,22 +54,8 @@ export const InputError = styled.span`
   font-size: ${({ theme }) => theme.fontsize.s1};
   font-weight: ${({ theme }) => theme.weight.regular};
   color: ${({ theme }) => theme.color.error.default};
-  margin-top: ${({ theme }) => theme.spacing.xs};
 `;
 
-export const InputSuccess = styled.span`
-  font-size: ${({ theme }) => theme.fontsize.s1};
-  font-weight: ${({ theme }) => theme.weight.regular};
-  color: ${({ theme }) => theme.color.success.default};
-  margin-top: ${({ theme }) => theme.spacing.xs};
-`;
-
-export const InputInfo = styled.span`
-  font-size: ${({ theme }) => theme.fontsize.s1};
-  font-weight: ${({ theme }) => theme.weight.regular};
-  color: ${({ theme }) => theme.color.secondary[500]};
-  margin-top: ${({ theme }) => theme.spacing.xs};
-`;
 
 export const InputIcon = styled.div`
   position: absolute;

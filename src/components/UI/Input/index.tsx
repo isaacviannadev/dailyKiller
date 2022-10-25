@@ -1,10 +1,11 @@
 import React, { InputHTMLAttributes, useState } from 'react';
 import { InputError, InputField, InputLabel, InputWrapper } from './style';
 
-interface CrossInputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface CrossInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
   value?: string;
+  hasError?: boolean;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -12,6 +13,7 @@ export const Input = ({
   label,
   error,
   value,
+  hasError = false,
   onChange,
   ...props
 }: CrossInputProps) => {
@@ -25,7 +27,12 @@ export const Input = ({
   return (
     <InputWrapper>
       {label && <InputLabel>{label}</InputLabel>}
-      <InputField value={inputValue} onChange={handleChange} {...props} />
+      <InputField
+        value={inputValue}
+        onChange={handleChange}
+        className={hasError ? 'error' : ''}
+        {...props}
+      />
       {error && <InputError>{error}</InputError>}
     </InputWrapper>
   );

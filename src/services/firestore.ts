@@ -7,11 +7,14 @@ import {
   setDoc,
   where,
 } from 'firebase/firestore';
+import { SelectedUser } from '../components/molecules/AutoComplete';
 import { User } from '../contexts/AuthContext';
 import { database } from './firebase';
 
 const usersCollection = collection(database, 'users');
+const teamsCollection = collection(database, 'teams');
 const userDB = doc(usersCollection);
+const teamDB = doc(teamsCollection);
 
 export async function registerUser(user: User) {
   const userRef = doc(usersCollection, user.email);
@@ -56,4 +59,23 @@ export async function updateUserLastLogin(user: User) {
       { merge: true }
     );
   }
+}
+
+export type Team = {
+  name: string;
+  description: string;
+  owner: User;
+  members: SelectedUser[];
+};
+
+export async function createTeam(team: Team) {
+  await setDoc(teamDB, {
+    name: team.name,
+    description: team.description,
+    members: team.members,
+    owner: team.owner,
+    createdAt: new Date(),
+  });
+
+  return true;
 }
