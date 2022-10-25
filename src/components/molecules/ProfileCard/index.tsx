@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '../../../hooks/useAuth';
 import Button from '../../UI/Button';
 import Divider from '../../UI/DIvider';
+import Tooltip from '../../UI/Tooltip';
 import ModalCreateTeam from '../ModalCreateTeam';
 import {
   AvatarSC,
@@ -55,11 +56,13 @@ const ProfileCard = () => {
               <h1>{user?.name}</h1>
               <Divider />
             </ProfileCardInfoSC>
-            <ProfileCardInfoSC>
-              <img src='/assets/icons/shuriken.svg' alt='Contato' />
-              <span>Contato</span>
-              <p>{user?.email}</p>
-            </ProfileCardInfoSC>
+            <Tooltip content='Não entre em contato!'>
+              <ProfileCardInfoSC>
+                <img src='/assets/icons/corpse.svg' alt='Contato' />
+                <span>Contato</span>
+                <p>{user?.email}</p>
+              </ProfileCardInfoSC>
+            </Tooltip>
 
             <ProfileCardInfoSC>
               <img src='/assets/icons/skull.svg' alt='Desde...' />

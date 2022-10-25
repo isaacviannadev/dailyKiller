@@ -5,7 +5,7 @@ export const FormContent = styled.form`
   flex-direction: column;
   width: 100%;
   height: 100%;
-  max-height: 300px;
+  max-height: 500px;
   overflow-y: auto;
   align-items: center;
 

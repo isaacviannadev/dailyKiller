@@ -30,7 +30,7 @@ export const InputField = styled.input`
   }
 
   &::placeholder {
-    color: ${({ theme }) => theme.color.main[300]};
+    color: ${({ theme }) => theme.color.main[500]};
   }
 
   &:disabled {

@@ -13,3 +13,9 @@ export const validateForm = (form: any) => {
   });
   return errors;
 };
+
+// test is email is a gmail address
+export const isGmail = (value: string) => {
+  const gmailRegex = /@gmail.com$/;
+  return gmailRegex.test(value);
+}

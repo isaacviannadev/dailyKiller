@@ -1,6 +1,6 @@
 import { GetServerSideProps } from 'next';
 import { parseCookies } from 'nookies';
-import Header from '../../UI/Header';
+import Header from '../../molecules/Header';
 import { LayoutSC } from './style';
 
 export default function Layout({ children }: any) {

@@ -1,4 +1,12 @@
-import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  setDoc,
+  where,
+} from 'firebase/firestore';
 import { User } from '../contexts/AuthContext';
 import { database } from './firebase';
 
@@ -6,7 +14,7 @@ const usersCollection = collection(database, 'users');
 const userDB = doc(usersCollection);
 
 export async function registerUser(user: User) {
-  const userRef = doc(usersCollection, user.id);
+  const userRef = doc(usersCollection, user.email);
   const userDoc = await getDoc(userRef);
 
   if (!userDoc.exists()) {
@@ -21,21 +29,31 @@ export async function registerUser(user: User) {
 
     return true;
   } else {
-    try {
-      const userDoc = {
-        name: user.name,
-        email: user.email,
-        avatar: user.avatar,
+    updateUserLastLogin(user);
+    return false;
+  }
+}
+
+export async function findUserByEmail(email: string) {
+  const queried = await getDocs(
+    query(usersCollection, where('email', '==', email))
+  );
+  const user = queried.docs[0];
+
+  return user?.data();
+}
+
+export async function updateUserLastLogin(user: User) {
+  const userRef = doc(usersCollection, user.email);
+  const userDoc = await getDoc(userRef);
+
+  if (userDoc.exists()) {
+    await setDoc(
+      userRef,
+      {
         lastLogin: new Date(),
-        createdAt: user.createdAt,
-        id: user.id,
-      };
-
-      await setDoc(userDB, userDoc, { merge: true });
-
-      console.log(`User ${user.name} registered successfully!`);
-    } catch (e) {
-      console.error('Error adding document: ', e);
-    }
+      },
+      { merge: true }
+    );
   }
 }

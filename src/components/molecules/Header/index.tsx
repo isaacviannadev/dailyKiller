@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { SmileyXEyes } from 'phosphor-react';
 import { useAuth } from '../../../hooks/useAuth';
 import { LogoutButtonSC } from '../../hoc/DefaultLayout/style';
-import Tooltip from '../Tooltip';
+import Tooltip from '../../UI/Tooltip';
 import { HeaderSC } from './style';
 
 const Header = () => {
