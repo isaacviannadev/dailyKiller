@@ -1,3 +1,4 @@
+import { useAuth } from '../../../hooks/useAuth';
 import Button from '../../UI/Button';
 import { Input } from '../../UI/Input';
 import Modal from '../../UI/Modal';
@@ -9,6 +10,8 @@ type ModalCreateTeamProps = {
 };
 
 const ModalCreateTeam = ({ isOpen, onClose }: ModalCreateTeamProps) => {
+  const { user } = useAuth();
+
   const Footer = (
     <>
       <Button variant='secondary' onClick={onClose}>
@@ -19,6 +22,22 @@ const ModalCreateTeam = ({ isOpen, onClose }: ModalCreateTeamProps) => {
       </Button>
     </>
   );
+
+  const payload = {
+    name: '',
+    description: '',
+    members: [],
+    owner: {
+      id: user?.id,
+      name: user?.name,
+      email: user?.email,
+    },
+    createdAt: new Date(),
+  };
+
+  function handleSubmit(event: React.FormEvent) {
+    event.preventDefault();
+  }
 
   return (
     <Modal
